@@ -24,7 +24,7 @@ provider "konnect" {
 
 # OpenBao is API-compatible with Vault, so the hashicorp/vault provider is used against it.
 provider "vault" {
-  address = "https://openbao.shared.pve-home.schenkeveld.io"
+  address = var.openbao_address
   token   = var.HCV_ROOT_TOKEN
 }
 
@@ -37,7 +37,7 @@ resource "konnect_gateway_control_plane" "ko_gateway_control_plane" {
 }
 
 resource "konnect_gateway_data_plane_client_certificate" "ko_gatewaydataplaneclientcertificate" {
-  cert             = file("../../../ansible/roles/tls/files/root-ca-cert.pem")
+  cert             = file(var.root_ca_cert_path)
   control_plane_id = konnect_gateway_control_plane.ko_gateway_control_plane.id
 }
 

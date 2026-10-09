@@ -25,3 +25,15 @@ variable "local_output_file" {
   default     = "connection-details.json"
   description = "Filename (relative to the stack) for the local details file."
 }
+
+variable "openbao_address" {
+  type        = string
+  default     = "https://openbao.example.com"
+  description = "Address of the OpenBao (or Vault) server. Only used when write_to_openbao is true."
+}
+
+variable "root_ca_cert_path" {
+  type        = string
+  default     = "./root-ca-cert.pem"
+  description = "Path to the root CA certificate (PEM) used as the data-plane client certificate."
+}
